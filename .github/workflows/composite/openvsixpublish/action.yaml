@@ -24,12 +24,12 @@ runs:
 
         # If no readme URL was specified, default to "<branch_name>/README.md"
         if (-not "${{ inputs.readme }}") {
-            $readmeUrl = "$GITHUB_SERVER_URL/$GITHUB.REPOSITORY/blob/$GITHUB_REF_NAME/README.md"
+            $readmeUrl = "$Env:GITHUB_SERVER_URL/$Env:GITHUB.REPOSITORY/blob/$Env:GITHUB_REF_NAME/README.md"
         } else {
             $readmeUrl = "${{ inputs.readme }}"
         }
 
-        $repoUrl = "$GITHUB_SERVER_URL/$GITHUB.REPOSITORY/"
+        $repoUrl = "$Env:GITHUB_SERVER_URL/$Env:GITHUB.REPOSITORY/"
         if ($baseRepoUrl -ne "") {
             [Reflection.Assembly]::LoadWithPartialName("System.Web") | Out-Null
             $repo = [System.Web.HttpUtility]::UrlEncode($repoUrl)
