@@ -9,10 +9,10 @@ namespace InsertGuid
     {
         public const string Id = "InsertGuid.c53fea6f-92c9-405f-b378-905869b5f2b3";
         public const string Name = "Insert Guid";
-        public const string Description = @"Empty VSIX Project.";
+        public const string Description = @"Sample VSIX project from VSIX Community";
         public const string Language = "en-US";
         public const string Version = "1.0";
-        public const string Author = "Mads Kristensen";
+        public const string Author = "Tim Heuer";
         public const string Tags = "";
     }
 }
