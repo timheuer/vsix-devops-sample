@@ -65,7 +65,7 @@ jobs:
     needs: build  
     environment:
       name: release
-      url: https://www.vsixgallery.com/extension/
+      url: https://www.vsixgallery.com/extension/InsertGuid.c53fea6f-92c9-405f-b378-905869b5f2b3
     runs-on: ubuntu-latest
     steps:
 
