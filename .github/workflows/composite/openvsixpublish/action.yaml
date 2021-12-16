@@ -8,7 +8,7 @@ inputs:
   readme:
     description: 'Path to readme file'
     required: false
-    default: 'readme.md'
+    default: ''
   vsix-file:
     description: 'Path to VSIX file'
     requried: true
@@ -23,12 +23,10 @@ runs:
         $issueTracker = ""
 
         # If no readme URL was specified, default to "<branch_name>/README.md"
-        if (-not ${{ inputs.readme }}) {
-            if ($env:APPVEYOR_REPO_BRANCH) {
-                $readmeUrl = "${{ env.GITHUB_SERVER_URL }}/${{ env.GITHUB.REPOSITORY }}/blob/${{ env.GITHUB_REF_NAME }}/README.md"
-            } else {
-                $readmeUrl = "main/README.md"
-            }
+        if (-not "${{ inputs.readme }}") {
+            $readmeUrl = "${{ env.GITHUB_SERVER_URL }}/${{ env.GITHUB.REPOSITORY }}/blob/${{ env.GITHUB_REF_NAME }}/README.md"
+        } else {
+            $readmeUrl = "${{ inputs.readme }}"
         }
 
         $repoUrl = "${{ env.GITHUB_SERVER_URL }}/${{ env.GITHUB.REPOSITORY }}/"
