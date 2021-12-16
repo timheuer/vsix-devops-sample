@@ -29,7 +29,7 @@ runs:
             $readmeUrl = "${{ inputs.readme }}"
         }
 
-        $repoUrl = "${{ env.GITHUB_SERVER_URL }}/${{ env.GITHUB.REPOSITORY }}/"
+        $repoUrl = "$GITHUB_SERVER_URL/$GITHUB.REPOSITORY/"
         if ($baseRepoUrl -ne "") {
             [Reflection.Assembly]::LoadWithPartialName("System.Web") | Out-Null
             $repo = [System.Web.HttpUtility]::UrlEncode($repoUrl)
