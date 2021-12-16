@@ -2,7 +2,7 @@
 name: "PR Build"
 
 on:
-  pull_request:
+  push:
     branches:
       - main
     paths-ignore:
@@ -19,6 +19,8 @@ on:
       
 jobs:
   build:
+    outputs:
+      version: ${{ steps.vsix_version.outputs.version-number }}
     name: Build 
     runs-on: windows-2022
     env:
@@ -58,3 +60,29 @@ jobs:
       with:
         name: InsertGuid.vsix
         path: ${{ env.VSIX_OUTPUT_DIR }}/**/*.vsix
+
+  publish:
+    needs: build  
+    environment:
+      name: release
+      url: https://www.vsixgallery.com/extension/
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Package artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: InsertGuid.vsix
+
+      - name: Upload to Open VSIX
+        uses: ./.github/workflows/composite/openvsixpublish
+        with:
+          vsix-file: InsertGuid.vsix
+
+      - name: Tag and Release
+        id: tag_release
+        uses: softprops/action-gh-release@v0.1.13
+        with:
+          body: Release ${{ needs.build.outputs.version }}
+          tag_name: ${{ needs.build.outputs.version }}
+          files: |
+            **/*.vsix

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsertGuid", "InsertGuid.cs
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1B28832D-EABF-4726-B663-53DC83C4D6EF}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\composite\openvsixpublish\action.yaml = .github\workflows\composite\openvsixpublish\action.yaml
+		.github\workflows\build.yaml = .github\workflows\build.yaml
 		.github\workflows\pr_build.yaml = .github\workflows\pr_build.yaml
 	EndProjectSection
 EndProject
