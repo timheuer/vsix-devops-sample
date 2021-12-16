@@ -77,9 +77,10 @@ jobs:
           name: InsertGuid.vsix
 
       - name: Upload to Open VSIX
-        uses: ./.github/workflows/composite/openvsixpublish
+        uses: timheuer/openvsixpublish@main
         with:
           vsix-file: InsertGuid.vsix
+          readme: https://raw.githubusercontent.com/timheuer/vsix-devops-sample/main/readme.md
 
       - name: Tag and Release
         id: tag_release
