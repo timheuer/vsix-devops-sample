@@ -38,7 +38,7 @@ runs:
         }
 
         # $fileNames = (Get-ChildItem $filePath -Recurse -File)
-        $vsixFile = ${{ inputs.vsix-file }}
+        $vsixFile = "${{ inputs.vsix-file }}"
         $vsixUploadEndpoint = "https://www.vsixgallery.com/api/upload"
 
         [string]$url = ($vsixUploadEndpoint + "?repo=" + $repo + "&issuetracker=" + $issueTracker + "&readmeUrl=" + $readmeUrl)
