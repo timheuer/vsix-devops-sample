@@ -22,20 +22,17 @@ runs:
         $repo = ""
         $issueTracker = ""
 
-        # If no readme URL was specified, default to "<branch_name>/README.md"
+        # If no readme URL was specified, default to "blob/<branch_name>/README.md"
         if (-not "${{ inputs.readme }}") {
-            $readmeUrl = "$Env:GITHUB_SERVER_URL/$Env:GITHUB.REPOSITORY/blob/$Env:GITHUB_REF_NAME/README.md"
-        } else {
-            $readmeUrl = "${{ inputs.readme }}"
+            $readmeUrl = "blob/$Env:GITHUB_REF_NAME/README.md"
         }
 
-        $repoUrl = "$Env:GITHUB_SERVER_URL/$Env:GITHUB.REPOSITORY/"
-        if ($baseRepoUrl -ne "") {
-            [Reflection.Assembly]::LoadWithPartialName("System.Web") | Out-Null
-            $repo = [System.Web.HttpUtility]::UrlEncode($repoUrl)
-            $issueTracker = [System.Web.HttpUtility]::UrlEncode(($repoUrl + "issues/"))
-            $readmeUrl = [System.Web.HttpUtility]::UrlEncode($readmeUrl)
-        }
+        $repoUrl = "$Env:GITHUB_SERVER_URL/$Env:GITHUB_REPOSITORY/"
+
+        [Reflection.Assembly]::LoadWithPartialName("System.Web") | Out-Null
+        $repo = [System.Web.HttpUtility]::UrlEncode($repoUrl)
+        $issueTracker = [System.Web.HttpUtility]::UrlEncode(($repoUrl + "issues/"))
+        $readmeUrl = [System.Web.HttpUtility]::UrlEncode($readmeUrl)
 
         # $fileNames = (Get-ChildItem $filePath -Recurse -File)
         $vsixFile = "${{ inputs.vsix-file }}"
