@@ -77,7 +77,7 @@ jobs:
           name: InsertGuid.vsix
 
       - name: Upload to Open VSIX
-        uses: timheuer/openvsixpublish@main
+        uses: timheuer/openvsixpublish@v1
         with:
           vsix-file: InsertGuid.vsix
           readme: https://raw.githubusercontent.com/timheuer/vsix-devops-sample/main/readme.md
