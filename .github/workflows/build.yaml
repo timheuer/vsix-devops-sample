@@ -41,10 +41,11 @@ jobs:
 
     - name: Increment VSIX version
       id: vsix_version
-      uses: timheuer/vsix-version-stamp@v1
+      uses: timheuer/vsix-version-stamp@dev
       with:
         manifest-file: ${{ env.VSIX_PROJECT_ROOT }}\source.extension.vsixmanifest
         vsix-token-source-file: ${{ env.VSIX_PROJECT_ROOT }}\source.extension.cs
+        version: "1.2.3"
 
     - name: Restore
       run: nuget restore -Verbosity quiet
